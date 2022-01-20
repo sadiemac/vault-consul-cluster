@@ -37,7 +37,7 @@ module "vault_cluster" {
   instance_type = var.vault_instance_type
 
   ami_id    = var.ami_id
-  user_data = data.template_file.user_data_vault_cluster.rendered
+  user_data = data.templatefile.user_data_vault_cluster.rendered
 
   vpc_id     = data.aws_vpc.default.id
   subnet_ids = data.aws_subnet_ids.default.ids
@@ -69,7 +69,7 @@ module "consul_iam_policies_servers" {
 # This script will configure and start Vault
 # ---------------------------------------------------------------------------------------------------------------------
 
-data "template_file" "user_data_vault_cluster" {
+data "templatefile" "user_data_vault_cluster" {
   template = file("${path.module}/user-data-vault.sh")
 
   vars = {
@@ -112,7 +112,7 @@ module "consul_cluster" {
   cluster_tag_value = var.consul_cluster_name
 
   ami_id    = var.ami_id
-  user_data = data.template_file.user_data_consul.rendered
+  user_data = data.templatefile.user_data_consul.rendered
 
   vpc_id     = data.aws_vpc.default.id
   subnet_ids = data.aws_subnet_ids.default.ids
@@ -130,7 +130,7 @@ module "consul_cluster" {
 # This script will configure and start Consul
 # ---------------------------------------------------------------------------------------------------------------------
 
-data "template_file" "user_data_consul" {
+data "templatefile" "user_data_consul" {
   template = file("${path.module}/user-data-consul.sh")
 
   vars = {
@@ -157,4 +157,5 @@ data "aws_subnet_ids" "default" {
 
 data "aws_region" "current" {
 }
+
 
