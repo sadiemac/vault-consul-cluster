@@ -101,7 +101,7 @@ module "security_group_rules" {
 # ---------------------------------------------------------------------------------------------------------------------
 
 module "consul_cluster" {
-  source = "github.com/hashicorp/terraform-aws-consul.git//modules/consul-cluster?ref=v0.8.0"
+  source = ""github.com/hashicorp/terraform-aws-consul//modules/consul-cluster?ref=v0.0.5""
 
   cluster_name  = var.consul_cluster_name
   cluster_size  = var.consul_cluster_size
